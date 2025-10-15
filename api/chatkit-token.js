@@ -14,8 +14,11 @@ const r = await fetch("https://api.openai.com/v1/chatkit/sessions", {
     "Content-Type": "application/json",
     "OpenAI-Beta": "chatkit_beta=v1"   // 👈 add this line
   },
-  body: JSON.stringify({ workflow, version })
-});
+  body: JSON.stringify({
+  user: "guest",   // 👈 Add this line — can be any string ID, like "guest", "wife", or "allister"
+  workflow,
+  version
+})
 
   const data = await r.json();
   return res.status(r.ok ? 200 : 500).json(data);
